@@ -1,8 +1,10 @@
 const TelegramBot = require("node-telegram-bot-api");
 const trackParse = require("./trackParse");
-const bot = new TelegramBot(process.env.TOKEN,{polling: true});
+const bot = new TelegramBot(process.env.TOKEN, {
+    polling: true
+});
 
-bot.setWebHook(process.env.HEROKU_URL + bot.token)
+// bot.setWebHook(process.env.HEROKU_URL + bot.token)
 
 console.log("Bot server started")
 
@@ -10,13 +12,14 @@ bot.on("text", (message) => {
     if (message.text.toUpperCase().indexOf("/ABOUTME") === 0) {
         bot.sendMessage(message.chat.id, "I'm Lexy your kind bot :) I can track any order.");
     } else if (message.text.toUpperCase().includes("/TRACK")) {
-        let tn = message.text.replace("/track", "");
-        tn = tn.replace(/ /g, '');
-        tn = tn.replace(/\n/g, '');
-        if (tn !== "" || tn !== undefined) {
-            console.log(tn);
-            getTrack(tn)
+        let tn = "";
+        if (message.text !== undefined) {
+            tn = message.text.replace("/track", "");
+            tn = tn.replace(/ /g, '');
+            tn = tn.replace(/\n/g, '');
         }
+        console.log(tn);
+        getTrack(tn)
 
         function getTrack(tn) {
             trackParse(tn)
