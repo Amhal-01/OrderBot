@@ -1,11 +1,5 @@
 const $ = require("cheerio");
 const puppeteer = require("puppeteer");
-const chalk = require("chalk");
-
-const error = chalk.bold.red;
-const success = chalk.keyword("green");
-
-// const url = "https://t.17track.net/en#nums=1ZR9W1030312359339";
 
 async function trackParse(tn) {
   try {
@@ -19,10 +13,9 @@ async function trackParse(tn) {
     content = content.replace("Powered by www.17track.net", "");
     content = content.replace(/=/g, "");
     await browser.close();
-    console.log(content)
     return content;
   } catch (e) {
-    console.log(error(e));
+    console.error(e);
     await browser.close();
     return;
   }
