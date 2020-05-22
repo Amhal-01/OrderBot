@@ -10,8 +10,10 @@ async function trackParse(tn) {
       return page.content();
     });
     let content = $("#cl-details", tmp).data("clipboardText");
-    content = content.replace("Powered by www.17track.net", "");
-    content = content.replace(/=/g, "");
+    if (content !== undefined) {
+      content = content.replace("Powered by www.17track.net", "");
+      content = content.replace(/=/g, "");
+    }
     await browser.close();
     return content;
   } catch (e) {

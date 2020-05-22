@@ -1,7 +1,6 @@
 {
   "name": "orderbot",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -9,11 +8,12 @@
   "author": "Hamza AMHAL",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "firebase": "^7.14.5",
     "node-telegram-bot-api": "^0.50.0",
     "puppeteer": "^3.1.0"
+  },
+  "engines": {
+    "node": "13.11.0"
   }
 }
